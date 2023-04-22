@@ -1,0 +1,7 @@
+.playlist__navlink.active {
+    color: #1bd760 !important ;
+}
+
+.playlist__navlink {
+    color: #b3b3b3;
+}
