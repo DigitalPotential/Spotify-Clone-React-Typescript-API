@@ -2,7 +2,7 @@ import { Box, Grid, Typography, Avatar } from '@mui/material';
 import SpotifyWebApi from 'spotify-web-api-node';
 import { useEffect, useState } from 'react';
 import { SpotifyPlayer } from '../../Types/spotify-types';
-
+import PlayerControls from '../PlayerControls/PlayerControls';
 
 interface Props {
 	spotifyApi: SpotifyWebApi;
@@ -10,23 +10,21 @@ interface Props {
 }
 
 interface Track {
-    name: string;
-    artists: { name: string }[];
-    album: { name: string; images: { url: string }[] };
-    duration_ms: number;
-  }
+	name: string;
+	artists: { name: string }[];
+	album: { name: string; images: { url: string }[] };
+	duration_ms: number;
+}
 
 const Player = ({ spotifyApi, token }: Props) => {
-    const [localPlayer, setLocalPlayer] = useState<SpotifyPlayer | null>(null);
-    const [is_paused, setIsPaused] = useState<boolean>(false);
-    const [current_track, setCurrentTrack] = useState<Track | null>(null);
-    const [device, setDevice] = useState<string | null>(null);
-    const [duration, setDuration] = useState<number | null>(null);
-    const [progress, setProgress] = useState<number | null>(null);
-    
+	const [localPlayer, setLocalPlayer] = useState<SpotifyPlayer | null>(null);
+	const [is_paused, setIsPaused] = useState<boolean>(false);
+	const [current_track, setCurrentTrack] = useState<Track | null>(null);
+	const [device, setDevice] = useState<string | null>(null);
+	const [duration, setDuration] = useState<number | null>(null);
+	const [progress, setProgress] = useState<number | null>(null);
 
 	useEffect(() => {
-        
 		const script = document.createElement('script');
 		script.src = 'https://sdk.scdn.co/spotify-player.js';
 		script.async = true;
@@ -70,32 +68,31 @@ const Player = ({ spotifyApi, token }: Props) => {
 		};
 	}, []);
 
-    useEffect(() => {
-        const currentPlayer = localPlayer;
-        if (!currentPlayer) return;
-      
-        async function connect() {
-          if (currentPlayer) {
-            await currentPlayer.connect();
-          }
-        }
-      
-        connect();
-      
-        return () => {
-          if (currentPlayer) {
-            currentPlayer.disconnect();
-          }
-        };
-      }, [localPlayer]);
-      
+	useEffect(() => {
+		const currentPlayer = localPlayer;
+		if (!currentPlayer) return;
+
+		async function connect() {
+			if (currentPlayer) {
+				await currentPlayer.connect();
+			}
+		}
+
+		connect();
+
+		return () => {
+			if (currentPlayer) {
+				currentPlayer.disconnect();
+			}
+		};
+	}, [localPlayer]);
 
 	useEffect(() => {
 		const transferPlayback = async () => {
 			if (device) {
-			    const res = await spotifyApi.getMyDevices();
-                console.log(res)
-                await spotifyApi.transferMyPlayback([device], { play: false });
+				const res = await spotifyApi.getMyDevices();
+				console.log(res);
+				await spotifyApi.transferMyPlayback([device], { play: false });
 			}
 		};
 
@@ -134,7 +131,12 @@ const Player = ({ spotifyApi, token }: Props) => {
 					md={4}
 					item
 				>
-					Play knappen
+					<PlayerControls
+						progress={progress}
+						is_paused={is_paused}
+						duration={duration}
+						player={localPlayer}
+					/>
 				</Grid>
 				<Grid xs={6} md={4} item sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
 					Volume
