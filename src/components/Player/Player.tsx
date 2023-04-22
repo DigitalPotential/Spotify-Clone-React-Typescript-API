@@ -62,6 +62,7 @@ const Player = ({ spotifyApi, token }: Props) => {
 				setProgress(progress);
 				setIsPaused(state.paused);
 				setCurrentTrack(state.track_window.current_track);
+                console.log(duration)
 			});
 
 			player.connect();
