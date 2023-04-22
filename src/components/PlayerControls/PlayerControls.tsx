@@ -2,8 +2,22 @@ import { Stack, Typography, Slider, Box, IconButton } from '@mui/material';
 import { formatTime } from '../../utils/formatTime';
 import { PlayArrow, SkipNext, SkipPrevious, Pause } from '@mui/icons-material';
 import { useState } from 'react';
+import { SpotifyPlayer } from '../../Types/spotify-types';
 
-const PlayerControls = ({is_paused, duration, progress, player}) => {
+interface PlayerControlsProps {
+    is_paused: boolean;
+    duration: number | null;
+    progress: number | null;
+    player: SpotifyPlayer | null;
+  }
+  
+
+  const PlayerControls = ({
+    is_paused,
+    duration,
+    progress,
+    player,
+  }: PlayerControlsProps) => {
 	const skipStyle = { width: 28, height: 28 };
 	const playStyle = { width: 38, height: 38 };
 	return (
@@ -20,9 +34,9 @@ const PlayerControls = ({is_paused, duration, progress, player}) => {
 				</IconButton>
 			</Stack>
 			<Stack spacing={2} direction="row" justifyContent={'center'} alignItems={'center'} sx={{ width: '75%' }}>
-				<Typography>{formatTime(progress)}</Typography>
-				<Slider />
-				<Typography>{formatTime(duration)}</Typography>
+            <Typography>{formatTime(progress ?? 0)}</Typography>
+            <Slider />
+            <Typography>{formatTime(duration ?? 0)}</Typography>
 			</Stack>
 		</Stack>
 	);
