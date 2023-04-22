@@ -19,7 +19,15 @@ const PlayerControls = (is_paused, duration, progress, player ) => {
                     <SkipNext sx={skipStyle} />
                 </IconButton>
             </Stack>
-            <Stack>Progress || Sidebar</Stack>
+            <Stack spacing={2} direction='row' justifyContent={'center'} alignItems={'center'} sx={{ width: '75%' }} >
+                <Typography>
+                    2:05
+                </Typography>
+                <Slider />
+                <Typography>
+                    2:05
+                </Typography>
+            </Stack>
         </Stack>
     )
 };
