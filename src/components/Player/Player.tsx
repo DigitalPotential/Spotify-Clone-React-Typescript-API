@@ -54,7 +54,6 @@ const Player = ({ spotifyApi, token }: Props) => {
 				if (!state || !state.track_window?.current_track) {
 					return;
 				}
-				console.log(state);
 
 				const duration = state.track_window.current_track.duration_ms / 1000;
 				const progress = state.position / 1000;
@@ -62,7 +61,7 @@ const Player = ({ spotifyApi, token }: Props) => {
 				setProgress(progress);
 				setIsPaused(state.paused);
 				setCurrentTrack(state.track_window.current_track);
-                console.log(duration)
+                    
 			});
 
 			player.connect();
@@ -88,17 +87,17 @@ const Player = ({ spotifyApi, token }: Props) => {
 		};
 	}, [localPlayer]);
 
-	useEffect(() => {
-		const transferPlayback = async () => {
-			if (device) {
-				const res = await spotifyApi.getMyDevices();
-				console.log(res);
-				await spotifyApi.transferMyPlayback([device], { play: false });
-			}
-		};
+	// useEffect(() => {
+	// 	const transferPlayback = async () => {
+	// 		if (device) {
+	// 			const res = await spotifyApi.getMyDevices();
+	// 			console.log(res);
+	// 			await spotifyApi.transferMyPlayback([device], { play: false });
+	// 		}
+	// 	};
 
-		transferPlayback();
-	}, [device, spotifyApi]);
+	// 	transferPlayback();
+	// }, [device, spotifyApi]);
 
 	return (
 		<Box>
