@@ -34,9 +34,9 @@ interface PlayerControlsProps {
 				</IconButton>
 			</Stack>
 			<Stack spacing={2} direction="row" justifyContent={'center'} alignItems={'center'} sx={{ width: '75%' }}>
-            <Typography>{formatTime(progress ?? 0)}</Typography>
-            <Slider />
-            <Typography>{formatTime(duration ?? 0)}</Typography>
+            <Typography sx={{color: 'text.secondary', fontSize: 12}}>{formatTime(progress ?? 0)}</Typography>
+            <Slider max={duration} value={progress} min={0} size={'medium'} />
+            <Typography sx={{color: 'text.secondary', fontSize: 12}}>{formatTime(duration ?? 0)}</Typography>
 			</Stack>
 		</Stack>
 	);
