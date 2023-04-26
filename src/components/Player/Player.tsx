@@ -136,14 +136,12 @@ const Player = ({ spotifyApi, token }: Props) => {
 					md={4}
 					item
 				>
-					{active ? (<PlayerControls
+					<PlayerControls
 						progress={progress}
 						is_paused={is_paused}
 						duration={duration}
 						player={localPlayer}
-					/>) : (<Box>
-                        Please transfer Playback
-                    </Box>) }
+					/>
 				</Grid>
 				<Grid xs={6} md={4} item sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
 					Volume

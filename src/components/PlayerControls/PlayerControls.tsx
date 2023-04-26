@@ -22,7 +22,7 @@ const PlayerControls = ({ is_paused, duration, progress, player }: PlayerControl
 				setCurrentProgress((prevState) => prevState + 1);
 			}
 		}, 1000);
-		return () => clearInterval(interval);
+		return () => clearInterval(intervalId);
 	}, [is_paused, player]);
 
 	useEffect(() => {
@@ -64,11 +64,11 @@ const PlayerControls = ({ is_paused, duration, progress, player }: PlayerControl
 			</Stack>
 			<Stack spacing={2} direction="row" justifyContent={'center'} alignItems={'center'} sx={{ width: '75%' }}>
 				<Typography sx={{ color: 'text.secondary', fontSize: 12 }}>
-					{formatTime(setCurrentProgress ?? 0)}
+					{formatTime(currentProgress ?? 0)}
 				</Typography>
 				<Slider
-					max={duration}
-					value={currentProgress}
+					max={duration ?? 0}
+					value={currentProgress ?? 0}
 					onChange={(event, value) => {
 						console.log('changed', value)
 						setCurrentProgress(value);
