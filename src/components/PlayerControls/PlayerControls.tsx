@@ -70,6 +70,7 @@ const PlayerControls = ({ is_paused, duration, progress, player }: PlayerControl
 					max={duration}
 					value={currentProgress}
 					onChange={(event, value) => {
+						console.log('changed', value)
 						setCurrentProgress(value);
 					}}
 					onChangeCommitted={(event, value) => {
