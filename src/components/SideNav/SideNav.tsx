@@ -49,7 +49,7 @@ const SideNav = ({ spotifyApi, token }: Props) => {
 				backgroundColor: 'background.default',
 				width: '230px',
 				height: '100%',
-				display: 'flex',
+				display: { xs: 'none', md: 'flex' },
 				flexDirection: 'column'
 			}}
 		>

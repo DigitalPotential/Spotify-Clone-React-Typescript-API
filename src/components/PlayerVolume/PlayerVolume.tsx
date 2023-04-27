@@ -2,8 +2,16 @@ import { Slider, Stack } from '@mui/material';
 import { VolumeDown, VolumeUp, VolumeOff } from '@mui/icons-material';
 import { useState } from 'react';
 
-const PlayerVolume = () => {
+const PlayerVolume = ({ player }) => {
 	const [volume, setVolume] = useState<number>(50);
+
+	const handleVolumeChange = async (value) => {
+		try {
+			await player.setVolume(value / 100);
+		} catch (e) {
+			console.error(e);
+		}
+	};
 
 	return (
 		<Stack direction={'row'} spacing={2} alignItems="center" sx={{ width: 150, color: 'text.secondary' }}>
@@ -14,7 +22,9 @@ const PlayerVolume = () => {
 				step={1}
 				value={volume}
 				onChange={(e, v) => setVolume(v)}
-				onChangeCommitted={() => {}}
+				onChangeCommitted={async (e, v) => {
+					handleVolumeChange(v);
+				}}
 			/>
 		</Stack>
 	);

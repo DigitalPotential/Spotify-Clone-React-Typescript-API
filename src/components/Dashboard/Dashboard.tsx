@@ -7,6 +7,7 @@ import { getAccessTokenFromStorage } from '../../utils/getAccessTokenFromStorage
 import { useState, useEffect } from 'react';
 import Playlist from '../../pages/Playlist';
 import Player from '../Player/Player';
+import MobileNav from '../MobileNav/MobileNav';
 
 interface Props {
 	spotifyApi: SpotifyWebApi;
@@ -35,6 +36,7 @@ const Dashboard = ({ spotifyApi }: Props) => {
 				</Routes>
 			</Box>
 			{token && <Player spotifyApi={spotifyApi} token={token} /> }
+			<MobileNav />
 		</Box>
 	);
 };
