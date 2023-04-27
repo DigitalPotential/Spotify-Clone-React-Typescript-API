@@ -3,6 +3,7 @@ import SpotifyWebApi from 'spotify-web-api-node';
 import { useEffect, useState } from 'react';
 import { SpotifyPlayer } from '../../Types/spotify-types';
 import PlayerControls from '../PlayerControls/PlayerControls';
+import PlayerVolume from '../PlayerVolume/PlayerVolume';
 
 interface Props {
 	spotifyApi: SpotifyWebApi;
@@ -144,7 +145,7 @@ const Player = ({ spotifyApi, token }: Props) => {
 					/>
 				</Grid>
 				<Grid xs={6} md={4} item sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
-					Volume
+					<PlayerVolume />
 				</Grid>
 			</Grid>
 		</Box>
