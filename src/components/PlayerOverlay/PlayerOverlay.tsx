@@ -1,4 +1,6 @@
-import { Box, Button } from '@mui/material';
+import { Box, Button, Container, Grid, IconButton, Typography } from '@mui/material';
+import KeyBoardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import PlayerControls from '../PlayerControls/PlayerControls';
 
 const PlayerOverlay = ({ playerOverlayIsOpen, closeOverlay }) => {
 	return (
@@ -16,8 +18,27 @@ const PlayerOverlay = ({ playerOverlayIsOpen, closeOverlay }) => {
 				transform: playerOverlayIsOpen ? 'translateY(0px)' : 'translateY(100vh)'
 			}}
 		>
-			Player Overlay
-            <Button onClick={closeOverlay}>Close</Button>
+			<Container sx={{ height: '100%', background: 'linear-gradient(0deg, #121212 0%, #39d47250 100%);' }}>
+				<Grid container direction="column" justifyContent="space-between" sx={{ height: '100%' }}>
+					<Grid item xs={1} sx={{ display: 'flex', alignItems: 'center', position: 'relative' }}>
+						<IconButton onClick={closeOverlay} sx={{ paddingLeft: 0 }}>
+							<KeyBoardArrowDownIcon fontSize="large" sx={{ color: 'text.primary' }} />
+						</IconButton>
+					</Grid>
+					<Grid
+						item
+						xs={5}
+						sx={{ backgroundImage: null, backgroundPosition: 'center', backgroundSize: 'cover' }}
+					></Grid>
+					<Grid item xs={1}>
+						<Typography sx={{color: 'text.primary', fontSize: '28px'}}>Song</Typography>
+                        <Typography sx={{color: 'text.secondary', fontSize: '18px'}}>Drake</Typography>
+					</Grid>
+                    <Grid item xs={2}>
+                        {/* <PlayerControls is_paused, duration, progress, player /> */}
+                    </Grid>
+				</Grid>
+			</Container>
 		</Box>
 	);
 };
