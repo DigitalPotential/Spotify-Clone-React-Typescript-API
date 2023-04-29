@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { SpotifyPlayer } from '../../Types/spotify-types';
 import PlayerControls from '../PlayerControls/PlayerControls';
 import PlayerVolume from '../PlayerVolume/PlayerVolume';
+import PlayerOverlay from '../PlayerOverlay/PlayerOverlay';
 
 interface Props {
 	spotifyApi: SpotifyWebApi;
@@ -25,6 +26,7 @@ const Player = ({ spotifyApi, token }: Props) => {
 	const [duration, setDuration] = useState<number | null>(null);
 	const [progress, setProgress] = useState<number | null>(null);
 	const [active, setActive] = useState<boolean | null>(null);
+	const [playerOverlayIsOpen, setPlayerOverlayIsOpen] = useState<boolean>(false);
 
 	useEffect(() => {
 		const script = document.createElement('script');
@@ -107,6 +109,7 @@ const Player = ({ spotifyApi, token }: Props) => {
 	return (
 		<Box>
 			<Grid
+				onClick={() => setPlayerOverlayIsOpen((prevState) => !prevState)}
 				container
 				px={3}
 				sx={{
@@ -151,6 +154,10 @@ const Player = ({ spotifyApi, token }: Props) => {
 					<PlayerVolume player={localPlayer} />
 				</Grid>
 			</Grid>
+			<PlayerOverlay
+				playerOverlayIsOpen={playerOverlayIsOpen}
+				closeOverlay={() => setPlayerOverlayIsOpen(false)}
+			/>
 		</Box>
 	);
 };
