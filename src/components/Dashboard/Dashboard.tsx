@@ -8,6 +8,7 @@ import { useState, useEffect } from 'react';
 import Playlist from '../../pages/Playlist';
 import Player from '../Player/Player';
 import MobileNav from '../MobileNav/MobileNav';
+import Library from '../../pages/Library';
 
 interface Props {
 	spotifyApi: SpotifyWebApi;
@@ -31,7 +32,7 @@ const Dashboard = ({ spotifyApi }: Props) => {
 				<SideNav spotifyApi={spotifyApi} token={token} />
 				<Routes>
 					<Route path="playlist/:id" element={<Playlist spotifyApi={spotifyApi} token={token as string} />} />
-					<Route path="/library" element={<div>Library</div>} />
+					<Route path="/library" element={<Library spotifyApi={spotifyApi} token={token as string} />} />
 					<Route path="/" element={<Home />} />
 				</Routes>
 			</Box>
