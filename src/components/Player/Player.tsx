@@ -1,7 +1,8 @@
 import { Box, Grid, Typography, Avatar } from '@mui/material';
 import SpotifyWebApi from 'spotify-web-api-node';
 import { useEffect, useState } from 'react';
-import { SpotifyPlayer } from '../../Types/spotify-types';
+import { ReadyEvent, NotReadyEvent, PlayerStateChangedEvent, SpotifyPlayer } from '../../Types/spotify-types';
+
 import PlayerControls from '../PlayerControls/PlayerControls';
 import PlayerVolume from '../PlayerVolume/PlayerVolume';
 import PlayerOverlay from '../PlayerOverlay/PlayerOverlay';
@@ -44,17 +45,17 @@ const Player = ({ spotifyApi, token }: Props) => {
 				volume: 0.5
 			});
 
-			player.addListener('ready', ({ device_id }) => {
-				console.log('Ready with Device ID', device_id);
-				setDevice(device_id);
+			player.addListener('ready', (data: ReadyEvent) => {
+				console.log('Ready with Device ID', data.device_id);
+				setDevice(data.device_id);
 				setLocalPlayer(player);
 			});
 
-			player.addListener('not_ready', ({ device_id }) => {
-				console.log('Device ID has gone offline', device_id);
+			player.addListener('not_ready', (data: NotReadyEvent) => {
+				console.log('Device ID has gone offline', data.device_id);
 			});
 
-			player.addListener('player_state_changed', (state) => {
+			player.addListener('player_state_changed', (state: PlayerStateChangedEvent) => {
 				if (!state || !state.track_window?.current_track) {
 					return;
 				}
@@ -150,7 +151,12 @@ const Player = ({ spotifyApi, token }: Props) => {
 						<Box>Please transfer Playback</Box>
 					)}
 				</Grid>
-				<Grid xs={6} md={4} item sx={{ display: { xs:'none', md:'flex'}, alignItems: 'center', justifyContent: 'flex-end' }}>
+				<Grid
+					xs={6}
+					md={4}
+					item
+					sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center', justifyContent: 'flex-end' }}
+				>
 					<PlayerVolume player={localPlayer} />
 				</Grid>
 			</Grid>

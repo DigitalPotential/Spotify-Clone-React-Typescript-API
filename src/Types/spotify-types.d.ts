@@ -6,6 +6,44 @@ declare global {
       };
     }
   }
+
+  export interface WebPlaybackPlayer {
+    device_id: string;
+  }
+  
+  export interface SimplifiedWebPlaybackAlbum {
+    images: { url: string }[];
+    name: string;
+  }
+  
+  export interface SimplifiedWebPlaybackArtist {
+    name: string;
+  }
+  
+  export interface SimplifiedWebPlaybackTrack {
+    name: string;
+    artists: SimplifiedWebPlaybackArtist[];
+    album: SimplifiedWebPlaybackAlbum;
+    duration_ms: number;
+  }
+  
+  export interface SimplifiedWebPlaybackState {
+    paused: boolean;
+    position: number;
+    track_window: {
+      current_track: SimplifiedWebPlaybackTrack;
+    };
+  }
+  
+  export type ReadyEvent = WebPlaybackPlayer;
+  export type NotReadyEvent = WebPlaybackPlayer;
+  export type PlayerStateChangedEvent = SimplifiedWebPlaybackState;
+  
+  export interface SpotifyPlayer {
+    addListener(event: 'ready', callback: (data: ReadyEvent) => void): boolean;
+    addListener(event: 'not_ready', callback: (data: NotReadyEvent) => void): boolean;
+    addListener(event: 'player_state_changed', callback: (data: PlayerStateChangedEvent) => void): boolean;
+  }
   
   export interface SpotifyTrack {
     duration_ms: number;
@@ -40,6 +78,7 @@ declare global {
   export interface SpotifyPlayer {
     new (options: SpotifyPlayerOptions): SpotifyPlayer;
     addListener(event: string, callback: (data: any) => void): void;
+    getCurrentState: () => Promise<PlayerStateChangedEvent | null>;
     connect(): Promise<void>;
     disconnect(): Promise<void>;
     previousTrack: () => void;

@@ -5,7 +5,7 @@ import PlayerControls from '../PlayerControls/PlayerControls';
 interface PlayerOverlayProps {
 	playerOverlayIsOpen: boolean;
 	closeOverlay: () => void;
-	progress: number;
+	progress: number | null;
 	is_paused: boolean;
 	duration: number;
 	player: any;
@@ -14,7 +14,7 @@ interface PlayerOverlayProps {
 		album: { images: { url: string }[] };
 		artists: { name: string }[];
 	};
-	active: boolean;
+	active: boolean | null;
 }
 
 const PlayerOverlay = ({
