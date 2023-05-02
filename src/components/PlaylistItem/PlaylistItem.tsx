@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 interface PlaylistProps {
 	name?: string;
-	id?: any;
+	id?: string;
 	loading?: boolean;
     images?: { url: string }[];
 }

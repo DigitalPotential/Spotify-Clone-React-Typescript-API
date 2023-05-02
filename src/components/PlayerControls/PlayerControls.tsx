@@ -19,7 +19,8 @@ const PlayerControls = ({ is_paused, duration, progress, player }: PlayerControl
 	useEffect(() => {
 		const intervalId = setInterval(() => {
 			if (!is_paused && player) {
-				setCurrentProgress((prevState) => prevState + 1);
+				setCurrentProgress((prevState) => (prevState ? prevState + 1 : 0));
+
 			}
 		}, 1000);
 		return () => clearInterval(intervalId);
@@ -37,7 +38,7 @@ const PlayerControls = ({ is_paused, duration, progress, player }: PlayerControl
 					sx={{ color: 'text.primary' }}
 					onClick={() => {
 						setCurrentProgress(0);
-						player.previousTrack();
+						player?.previousTrack();
 					}}
 				>
 					<SkipPrevious sx={skipStyle} />
@@ -46,7 +47,7 @@ const PlayerControls = ({ is_paused, duration, progress, player }: PlayerControl
 					size="small"
 					sx={{ color: 'text.primary' }}
 					onClick={() => {
-						player.togglePlay();
+						player?.togglePlay();
 					}}
 				>
 					{is_paused ? <PlayArrow sx={playStyle} /> : <Pause sx={playStyle} />}
@@ -56,7 +57,7 @@ const PlayerControls = ({ is_paused, duration, progress, player }: PlayerControl
 					sx={{ color: 'text.primary' }}
 					onClick={() => {
 						setCurrentProgress(0);
-						player.nextTrack();
+						player?.nextTrack();
 					}}
 				>
 					<SkipNext sx={skipStyle} />
@@ -71,10 +72,10 @@ const PlayerControls = ({ is_paused, duration, progress, player }: PlayerControl
 					value={currentProgress ?? 0}
 					onChange={(event, value) => {
 						console.log('changed', value);
-						setCurrentProgress(value);
+						setCurrentProgress(value as number);
 					}}
 					onChangeCommitted={(event, value) => {
-						player.seek(value * 1000);
+						player?.seek(value as number * 1000);
 					}}
 					min={0}
 					size="medium"

@@ -42,7 +42,12 @@ declare global {
     addListener(event: string, callback: (data: any) => void): void;
     connect(): Promise<void>;
     disconnect(): Promise<void>;
+    previousTrack: () => void;
+    togglePlay: () => void;
+    nextTrack: () => void;
+    seek: (position: number) => void;
   }
+  
   
   export interface SpotifyPlayerOptions {
     name: string;
