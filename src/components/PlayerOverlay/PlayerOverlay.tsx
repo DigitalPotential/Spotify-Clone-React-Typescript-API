@@ -2,6 +2,21 @@ import { Box, Button, Container, Grid, IconButton, Typography } from '@mui/mater
 import KeyBoardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import PlayerControls from '../PlayerControls/PlayerControls';
 
+interface PlayerOverlayProps {
+	playerOverlayIsOpen: boolean;
+	closeOverlay: () => void;
+	progress: number;
+	is_paused: boolean;
+	duration: number;
+	player: any;
+	current_track: {
+		name: string;
+		album: { images: { url: string }[] };
+		artists: { name: string }[];
+	};
+	active: boolean;
+}
+
 const PlayerOverlay = ({
 	playerOverlayIsOpen,
 	closeOverlay,
@@ -11,7 +26,7 @@ const PlayerOverlay = ({
 	player,
 	current_track,
 	active
-}) => {
+}: PlayerOverlayProps) => {
 	return (
 		<Box
 			id="PlayerOverlay"
