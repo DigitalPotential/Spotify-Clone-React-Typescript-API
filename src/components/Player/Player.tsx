@@ -1,7 +1,7 @@
 import { Box, Grid, Typography, Avatar } from '@mui/material';
 import SpotifyWebApi from 'spotify-web-api-node';
 import { useEffect, useState } from 'react';
-import { ReadyEvent, NotReadyEvent, PlayerStateChangedEvent, SpotifyPlayer } from '../../Types/spotify-types';
+import { ReadyEvent, NotReadyEvent, PlayerStateChangedEvent, ExtendedSpotifyPlayer } from '../../Types/spotify-types';
 
 import PlayerControls from '../PlayerControls/PlayerControls';
 import PlayerVolume from '../PlayerVolume/PlayerVolume';
@@ -20,7 +20,7 @@ interface Track {
 }
 
 const Player = ({ spotifyApi, token }: Props) => {
-	const [localPlayer, setLocalPlayer] = useState<SpotifyPlayer | null>(null);
+	const [localPlayer, setLocalPlayer] = useState<ExtendedSpotifyPlayer | null>(null);
 	const [is_paused, setIsPaused] = useState<boolean>(false);
 	const [current_track, setCurrentTrack] = useState<Track | null>(null);
 	const [device, setDevice] = useState<string | null>(null);
@@ -48,7 +48,7 @@ const Player = ({ spotifyApi, token }: Props) => {
 			player.addListener('ready', (data: ReadyEvent) => {
 				console.log('Ready with Device ID', data.device_id);
 				setDevice(data.device_id);
-				setLocalPlayer(player);
+				setLocalPlayer(player as ExtendedSpotifyPlayer);
 			});
 
 			player.addListener('not_ready', (data: NotReadyEvent) => {

@@ -1,19 +1,20 @@
 import { Box, Button, Container, Grid, IconButton, Typography } from '@mui/material';
 import KeyBoardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import PlayerControls from '../PlayerControls/PlayerControls';
+import { ExtendedSpotifyPlayer } from '../../Types/spotify-types';
 
 interface PlayerOverlayProps {
 	playerOverlayIsOpen: boolean;
 	closeOverlay: () => void;
 	progress: number | null;
 	is_paused: boolean;
-	duration: number;
-	player: any;
+	duration: number | null ; 
+	player: ExtendedSpotifyPlayer | null;
 	current_track: {
 		name: string;
 		album: { images: { url: string }[] };
 		artists: { name: string }[];
-	};
+	} | null;
 	active: boolean | null;
 }
 

@@ -1,23 +1,25 @@
 import { Slider, Stack } from '@mui/material';
 import { VolumeDown, VolumeUp, VolumeOff } from '@mui/icons-material';
 import { useState } from 'react';
+import { ExtendedSpotifyPlayer } from '../../Types/spotify-types';
 
-interface PlayerVolumeProps {
-    player: {
-        setVolume: (value: number) => Promise<void>;
-    };
-}
+  interface PlayerVolumeProps {
+	player: ExtendedSpotifyPlayer | null;
+  }
 
 const PlayerVolume = ({ player }: PlayerVolumeProps) => {
 	const [volume, setVolume] = useState<number>(50);
 
 	const handleVolumeChange = async (value: number) => {
-		try {
+		if (player) {
+		  try {
 			await player.setVolume(value / 100);
-		} catch (e) {
+		  } catch (e) {
 			console.error(e);
+		  }
 		}
-	};
+	  };
+	  
 
 	return (
 		<Stack direction={'row'} spacing={2} alignItems="center" sx={{ width: 150, color: 'text.secondary' }}>

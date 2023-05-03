@@ -38,6 +38,10 @@ declare global {
   export type ReadyEvent = WebPlaybackPlayer;
   export type NotReadyEvent = WebPlaybackPlayer;
   export type PlayerStateChangedEvent = SimplifiedWebPlaybackState;
+
+  export interface ExtendedSpotifyPlayer extends SpotifyPlayer {
+    setVolume: (value: number) => Promise<void>;
+  }
   
   export interface SpotifyPlayer {
     addListener(event: 'ready', callback: (data: ReadyEvent) => void): boolean;

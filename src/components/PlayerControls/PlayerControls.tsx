@@ -2,13 +2,13 @@ import { Stack, Typography, Slider, Box, IconButton } from '@mui/material';
 import { formatTime } from '../../utils/formatTime';
 import { PlayArrow, SkipNext, SkipPrevious, Pause } from '@mui/icons-material';
 import { useState, useEffect } from 'react';
-import { SpotifyPlayer } from '../../Types/spotify-types';
+import { ExtendedSpotifyPlayer } from '../../Types/spotify-types';
 
 interface PlayerControlsProps {
+	player: ExtendedSpotifyPlayer | null;
 	is_paused: boolean;
 	duration: number | null;
 	progress: number | null;
-	player: SpotifyPlayer | null;
 }
 
 const PlayerControls = ({ is_paused, duration, progress, player }: PlayerControlsProps) => {
