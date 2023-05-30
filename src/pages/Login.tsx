@@ -1,4 +1,4 @@
-import { Box, Button } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import { accessUrl } from '../config/config';
 
 const Login = () => {
@@ -19,6 +19,9 @@ const Login = () => {
 			<Button color="primary" size="large" variant="contained" href={accessUrl}>
 				Login to Spotify
 			</Button>
+			<Typography sx={{ fontSize: 16, color: 'text.primary', marginTop: '25px' }}>
+                I will record a Video demo for this project soon!
+            </Typography>
 		</Box>
 	);
 };
