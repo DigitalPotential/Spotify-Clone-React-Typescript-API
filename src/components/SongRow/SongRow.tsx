@@ -1,4 +1,4 @@
-import { Box, Grid, Divider, Avatar, Typography, Skeleton } from '@mui/material';
+import { Box, Grid, Avatar, Typography, Skeleton } from '@mui/material';
 import { formatTime } from '../../utils/formatTime';
 import SpotifyWebApi from 'spotify-web-api-node';
 

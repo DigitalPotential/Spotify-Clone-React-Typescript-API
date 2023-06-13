@@ -19,7 +19,7 @@ interface Track {
 	duration_ms: number;
 }
 
-const Player = ({ spotifyApi, token }: Props) => {
+const Player = ({ token }: Props) => {
 	const [localPlayer, setLocalPlayer] = useState<ExtendedSpotifyPlayer | null>(null);
 	const [is_paused, setIsPaused] = useState<boolean>(false);
 	const [current_track, setCurrentTrack] = useState<Track | null>(null);
