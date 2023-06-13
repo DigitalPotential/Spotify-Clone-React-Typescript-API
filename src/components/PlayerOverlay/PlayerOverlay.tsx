@@ -1,4 +1,4 @@
-import { Box, Button, Container, Grid, IconButton, Typography } from '@mui/material';
+import { Box, Container, Grid, IconButton, Typography } from '@mui/material';
 import KeyBoardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import PlayerControls from '../PlayerControls/PlayerControls';
 import { ExtendedSpotifyPlayer } from '../../Types/spotify-types';

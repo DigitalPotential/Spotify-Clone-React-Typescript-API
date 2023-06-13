@@ -4,7 +4,7 @@ import Home from '../../pages/Home';
 import SpotifyWebApi from 'spotify-web-api-node';
 import SideNav from '../SideNav/SideNav';
 import { getAccessTokenFromStorage } from '../../utils/getAccessTokenFromStorage';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import Playlist from '../../pages/Playlist';
 import Player from '../Player/Player';
 import MobileNav from '../MobileNav/MobileNav';
