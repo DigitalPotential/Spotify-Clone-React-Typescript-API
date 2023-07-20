@@ -15,7 +15,6 @@ interface PlayerOverlayProps {
 		album: { images: { url: string }[] };
 		artists: { name: string }[];
 	} | null;
-	active: boolean | null;
 }
 
 const PlayerOverlay = ({
@@ -25,8 +24,7 @@ const PlayerOverlay = ({
 	is_paused,
 	duration,
 	player,
-	current_track,
-	active
+	current_track
 }: PlayerOverlayProps) => {
 	return (
 		<Box
@@ -66,16 +64,12 @@ const PlayerOverlay = ({
 						</Typography>
 					</Grid>
 					<Grid item xs={2}>
-                        {active ? (
 						<PlayerControls
 							progress={progress}
 							is_paused={is_paused}
 							duration={duration}
 							player={player}
 						/>
-					) : (
-						<Box>Please transfer Playback</Box>
-					)}
 					</Grid>
 				</Grid>
 			</Container>

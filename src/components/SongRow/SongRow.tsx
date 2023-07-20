@@ -19,8 +19,9 @@ const SongRow: React.FC<SongRowProps> = ({ spotifyApi, position=0, contextUri,  
 	const image = images?.length ? images[0].url : undefined;
 
     const onRowClick = async () => {
-        const song = { context_uri: contextUri, offset: {position: position}, position_ms:0 }
+        const song = { context_uri: contextUri, offset: {position: position}, position_ms:0, duration }
         await spotifyApi?.play(song)
+		
     }
 
 	return (

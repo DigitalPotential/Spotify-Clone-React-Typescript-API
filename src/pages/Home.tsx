@@ -12,10 +12,9 @@ const Home = () => {
                 gap: 4,
                 marginTop: '2rem' 
             }}>
-            <img src="/carlos-m.png" alt="Carlos Manriquez" style={{ borderRadius: '2rem', maxWidth: '25%', maxHeight: '25%'}} />
-            <Button size='large' variant='contained' href='tel:0702117225' >
-                Ring Carlos!
-            </Button>
+            <h1>Spotify Clone</h1>
+            <img src="/carlosProfil.png" alt="Carlos Manriquez" style={{ borderRadius: '2rem', maxWidth: '25%', maxHeight: '25%'}} />
+            <h1>By Carlos Manriquez</h1>
         </Box>
     )
 }

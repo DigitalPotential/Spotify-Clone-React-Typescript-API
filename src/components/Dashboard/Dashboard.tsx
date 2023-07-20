@@ -27,12 +27,12 @@ const Dashboard = ({ spotifyApi }: Props) => {
 	}, []);
 
 	return (
-		<Box sx={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column' }}>
+		<Box sx={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', overflowY: 'hidden' }}>
 			<Box sx={{ flex: 1, overflowY: 'auto', display: 'flex' }}>
 				<SideNav spotifyApi={spotifyApi} token={token} />
 				<Routes>
-					<Route path="playlist/:id" element={<Playlist spotifyApi={spotifyApi} token={token as string} />} />
-					<Route path="/library" element={<Library spotifyApi={spotifyApi} token={token as string} />} />
+					<Route path="playlist/:id" element={<Playlist token={token as string} spotifyApi={spotifyApi} />} />
+					<Route path="/library" element={<Library token={token as string} spotifyApi={spotifyApi} />} />
 					<Route path="/" element={<Home />} />
 				</Routes>
 			</Box>
